@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://f06q4y1ls44s"]
+
+[ext_resource type="Script" uid="uid://bsqbwh7bxrrte" path="res://effects/time_limited_particles.gd" id="1_5fea7"]
+
+[sub_resource type="Gradient" id="Gradient_5fea7"]
+offsets = PackedFloat32Array(0.15194346, 1)
+colors = PackedColorArray(1, 0.8352941, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jx2c4"]
+gradient = SubResource("Gradient_5fea7")
+
+[sub_resource type="Gradient" id="Gradient_xdktb"]
+colors = PackedColorArray(1, 1, 0, 1, 0.61960787, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gm6we"]
+gradient = SubResource("Gradient_xdktb")
+
+[sub_resource type="Curve" id="Curve_3p3iv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2815534, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i4fjq"]
+curve = SubResource("Curve_3p3iv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sr0u3"]
+emission_shape = 3
+emission_box_extents = Vector3(0.05, 0, 0.05)
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = -543.63
+angular_velocity_max = 659.82996
+gravity = Vector3(0, 4, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+scale_curve = SubResource("CurveTexture_i4fjq")
+color_ramp = SubResource("GradientTexture1D_gm6we")
+color_initial_ramp = SubResource("GradientTexture1D_jx2c4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iw2mk"]
+blend_mode = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_jx6cc"]
+material = SubResource("StandardMaterial3D_iw2mk")
+
+[node name="Fire" type="GPUParticles3D"]
+amount = 50
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_sr0u3")
+draw_pass_1 = SubResource("SphereMesh_jx6cc")
+script = ExtResource("1_5fea7")

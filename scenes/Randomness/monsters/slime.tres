@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Monster" load_steps=2 format=3 uid="uid://cpp40t5oxeddh"]
+
+[ext_resource type="Script" uid="uid://b3hfgwfx8bipn" path="res://scenes/Randomness/monster.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+monster_name = "Slime"
+monster_emoji = "🟢"
+monster_color = Color(0.564706, 0.933333, 0.564706, 1)
+probability = 0.4

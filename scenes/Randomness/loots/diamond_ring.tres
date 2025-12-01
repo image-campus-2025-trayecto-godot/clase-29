@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Loot" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/Randomness/loot.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+item_name = "Diamond Ring"
+item_emoji = "💎"
+item_color = Color(0, 0.807843, 0.819608, 1)

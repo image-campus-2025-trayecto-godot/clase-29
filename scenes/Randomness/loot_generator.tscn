@@ -1,0 +1,198 @@
+[gd_scene load_steps=14 format=3 uid="uid://b32em6cs1vaqu"]
+
+[ext_resource type="Script" uid="uid://ds1ffk82cckby" path="res://scenes/Randomness/loot_generator.gd" id="1_a1b2c"]
+[ext_resource type="Script" uid="uid://b3hfgwfx8bipn" path="res://scenes/Randomness/monster.gd" id="2_b74wg"]
+[ext_resource type="Resource" uid="uid://cpp40t5oxeddh" path="res://scenes/Randomness/monsters/slime.tres" id="2_slime"]
+[ext_resource type="Resource" uid="uid://ds8c0y8wk8pyw" path="res://scenes/Randomness/monsters/goblin.tres" id="3_goblin"]
+[ext_resource type="Resource" uid="uid://bws6i6d65p60y" path="res://scenes/Randomness/monsters/wolf.tres" id="4_wolf"]
+[ext_resource type="Resource" uid="uid://bw67o5la56r3a" path="res://scenes/Randomness/monsters/skeleton.tres" id="5_skeleton"]
+[ext_resource type="Resource" uid="uid://6hrco1l6hvxv" path="res://scenes/Randomness/monsters/dragon.tres" id="6_dragon"]
+[ext_resource type="Resource" path="res://scenes/Randomness/loots/rusty_sword.tres" id="7_sword"]
+[ext_resource type="Script" uid="uid://o6x3is8pjf1t" path="res://scenes/Randomness/loot.gd" id="8_ehes1"]
+[ext_resource type="Resource" path="res://scenes/Randomness/loots/health_potion.tres" id="8_potion"]
+[ext_resource type="Resource" path="res://scenes/Randomness/loots/gold_coins.tres" id="9_coins"]
+[ext_resource type="Resource" path="res://scenes/Randomness/loots/magic_scroll.tres" id="10_scroll"]
+[ext_resource type="Resource" path="res://scenes/Randomness/loots/diamond_ring.tres" id="11_ring"]
+
+[node name="LootGenerator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1b2c")
+random_seed = "lalala"
+monsters = Array[ExtResource("2_b74wg")]([ExtResource("2_slime"), ExtResource("3_goblin"), ExtResource("4_wolf"), ExtResource("5_skeleton"), ExtResource("6_dragon")])
+loot_items = Array[ExtResource("8_ehes1")]([ExtResource("7_sword"), ExtResource("8_potion"), ExtResource("9_coins"), ExtResource("10_scroll"), ExtResource("11_ring")])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LeftPanel" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "🗡️ Monster Hunter 🗡️"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="FindMonsterButton" type="Button" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 24
+text = "🔍 Find a Monster"
+
+[node name="MonsterPanel" type="PanelContainer" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
+text = "⚠️ You found:"
+horizontal_alignment = 1
+
+[node name="MonsterLabel" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Slime"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="FightButton" type="Button" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.5, 0.5, 1)
+theme_override_font_sizes/font_size = 20
+text = "⚔️ Fight!"
+
+[node name="SkipButton" type="Button" parent="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
+text = "🏃 Skip"
+
+[node name="ResultPanel" type="PanelContainer" parent="HBoxContainer/LeftPanel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/ResultPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/VBoxContainer/ResultPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResultLabel" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/ResultPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="LootLabel" type="Label" parent="HBoxContainer/LeftPanel/VBoxContainer/ResultPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Gold Coins"
+horizontal_alignment = 1
+
+[node name="RightPanel" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="JournalTitle" type="Label" parent="HBoxContainer/RightPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.4, 0.2, 1)
+theme_override_font_sizes/font_size = 32
+text = "📖 Journal 📖"
+horizontal_alignment = 1
+
+[node name="ExportJournalButton" type="Button" parent="HBoxContainer/RightPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.8, 0.6, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "💾 Export Journal"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="JournalLabel" type="Label" parent="HBoxContainer/RightPanel/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "✨ Your adventure begins... ✨"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/FindMonsterButton" to="." method="_on_find_monster_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer/ButtonsContainer/FightButton" to="." method="_on_fight_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/LeftPanel/VBoxContainer/MonsterPanel/MarginContainer/VBoxContainer/ButtonsContainer/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/VBoxContainer/ExportJournalButton" to="." method="_on_export_journal_button_pressed"]

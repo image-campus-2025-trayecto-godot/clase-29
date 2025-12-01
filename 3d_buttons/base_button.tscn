@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxbrgr6dl7qml"]
+
+[ext_resource type="Script" uid="uid://yvlbqcf1utvi" path="res://3d_buttons/button_3d.gd" id="1_81ecw"]
+[ext_resource type="PackedScene" uid="uid://2gn36isbq6sd" path="res://assets/kenney_prototype-kit/Models/GLB format/button-floor-round.glb" id="3_srgnp"]
+[ext_resource type="Script" uid="uid://s5wkjbd4n20e" path="res://3d_buttons/button_area.gd" id="4_7rp2f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nifc"]
+size = Vector3(2, 2, 2)
+
+[node name="BaseButton" type="Node3D"]
+script = ExtResource("1_81ecw")
+
+[node name="button-floor-round2" parent="." instance=ExtResource("3_srgnp")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="button-floor-round2" index="1"]
+speed_scale = 3.0
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("interactable")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_7rp2f")
+interactable = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_2nifc")
+
+[node name="ClickIndicator" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95995975, 0)
+billboard = 1
+text = "Click"
+
+[editable path="button-floor-round2"]

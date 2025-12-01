@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl2hg0rgj8qnc"]
+
+[ext_resource type="PackedScene" uid="uid://cxbrgr6dl7qml" path="res://3d_buttons/base_button.tscn" id="1_ai6m3"]
+[ext_resource type="Script" uid="uid://nj7510yod22r" path="res://3d_buttons/spawner_button.gd" id="2_mt4ub"]
+
+[sub_resource type="SystemFont" id="SystemFont_mt4ub"]
+generate_mipmaps = true
+
+[node name="SpawnerButton" instance=ExtResource("1_ai6m3")]
+script = ExtResource("2_mt4ub")
+scene = null
+
+[node name="ClickIndicator" parent="." index="2"]
+texture_filter = 5
+font = SubResource("SystemFont_mt4ub")
+font_size = 80
+outline_size = 20
+
+[editable path="button-floor-round2"]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Loot" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/Randomness/loot.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+item_name = "Magic Scroll"
+item_emoji = "📜"
+item_color = Color(0.870588, 0.721569, 0.529412, 1)

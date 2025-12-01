@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://b13hoq2lk88ds"]
+
+[ext_resource type="Script" uid="uid://i4ppbtpoabda" path="res://player.gd" id="1_bexhn"]
+[ext_resource type="Script" uid="uid://bovc50hoip15q" path="res://player_camera.gd" id="2_2nifc"]
+[ext_resource type="PackedScene" uid="uid://2gn36isbq6sd" path="res://kenney_prototype-kit/Models/GLB format/button-floor-round.glb" id="2_t7iv1"]
+[ext_resource type="Script" uid="uid://yvlbqcf1utvi" path="res://button.gd" id="3_wkftn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bexhn"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_t7iv1"]
+sky_material = SubResource("ProceduralSkyMaterial_bexhn")
+
+[sub_resource type="Environment" id="Environment_2nifc"]
+background_mode = 2
+sky = SubResource("Sky_t7iv1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qhyq2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nifc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nifc"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 25.0
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2nifc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("1_bexhn")
+mouse_sensitivity = 0.0013
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8575492, 0)
+script = ExtResource("2_2nifc")
+
+[node name="InteractionRayCast3D" type="RayCast3D" parent="Player/Camera3D"]
+target_position = Vector3(0, 1000, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_qhyq2")
+
+[node name="Button" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3.895465)
+script = ExtResource("3_wkftn")
+
+[node name="button-floor-round2" parent="Button" instance=ExtResource("2_t7iv1")]
+
+[node name="button" parent="Button/button-floor-round2/button-floor-round" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="Area3D" type="Area3D" parent="Button"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button/Area3D"]
+shape = SubResource("BoxShape3D_2nifc")
+
+[node name="ClickIndicator" type="Label3D" parent="Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26136655, 0)
+billboard = 1
+text = "Press"
+
+[node name="DebugBall" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3575492, 0)
+material = SubResource("StandardMaterial3D_2nifc")
+
+[editable path="Button/button-floor-round2"]

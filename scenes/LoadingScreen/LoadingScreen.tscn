@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2p8gx7ypm14q"]
+
+[ext_resource type="Script" uid="uid://bn7e0qjov3885" path="res://scenes/LoadingScreen/loading_screen.gd" id="1_m6s31"]
+[ext_resource type="PackedScene" uid="uid://b13hoq2lk88ds" path="res://scenes/TestLevel/Level.tscn" id="2_rs6e8"]
+[ext_resource type="PackedScene" uid="uid://c6j2chcb6wxy6" path="res://effects/confetti.tscn" id="3_w8c6l"]
+[ext_resource type="PackedScene" uid="uid://f06q4y1ls44s" path="res://effects/fire.tscn" id="4_4ck1v"]
+[ext_resource type="PackedScene" uid="uid://cl2hg0rgj8qnc" path="res://3d_buttons/spawner_button.tscn" id="5_ghh5q"]
+
+[node name="LoadingScreen" type="Node3D"]
+script = ExtResource("1_m6s31")
+scenes_to_load = Array[PackedScene]([ExtResource("2_rs6e8"), ExtResource("3_w8c6l"), ExtResource("4_4ck1v"), ExtResource("5_ghh5q")])
+next_scene = ExtResource("2_rs6e8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 203.0
+offset_right = 31.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -73.0
+offset_right = 20.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
