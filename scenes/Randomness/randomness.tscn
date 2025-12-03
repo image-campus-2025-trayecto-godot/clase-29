@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2t0rwdnwryb1"]
+
+[ext_resource type="Script" uid="uid://bfa10wofktgqj" path="res://scenes/Randomness/randomness.gd" id="1_dt5hl"]
+[ext_resource type="Script" uid="uid://dbdiiesqeo2mp" path="res://scenes/Randomness/button.gd" id="1_vdmh6"]
+
+[node name="Randomness" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dt5hl")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 182.0
+offset_right = 257.0
+offset_bottom = 213.0
+text = "Generate random number"
+script = ExtResource("1_vdmh6")
+
+[node name="ItemList" type="ItemList" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 334.0
+offset_top = 52.0
+offset_right = 672.0
+offset_bottom = 389.0
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 92.0
+offset_right = 252.0
+offset_bottom = 123.0

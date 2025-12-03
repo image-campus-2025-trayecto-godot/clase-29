@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b32em6cs1vaqu"]
+[gd_scene load_steps=15 format=3 uid="uid://b32em6cs1vaqu"]
 
 [ext_resource type="Script" uid="uid://ds1ffk82cckby" path="res://scenes/Randomness/loot_generator.gd" id="1_a1b2c"]
 [ext_resource type="Script" uid="uid://b3hfgwfx8bipn" path="res://scenes/Randomness/monster.gd" id="2_b74wg"]
@@ -14,6 +14,13 @@
 [ext_resource type="Resource" path="res://scenes/Randomness/loots/magic_scroll.tres" id="10_scroll"]
 [ext_resource type="Resource" path="res://scenes/Randomness/loots/diamond_ring.tres" id="11_ring"]
 
+[sub_resource type="Resource" id="Resource_b74wg"]
+script = ExtResource("2_b74wg")
+monster_name = "Fantasma"
+monster_emoji = "👻"
+probability = 30.0
+metadata/_custom_type_script = "uid://b3hfgwfx8bipn"
+
 [node name="LootGenerator" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -23,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a1b2c")
 random_seed = "lalala"
-monsters = Array[ExtResource("2_b74wg")]([ExtResource("2_slime"), ExtResource("3_goblin"), ExtResource("4_wolf"), ExtResource("5_skeleton"), ExtResource("6_dragon")])
+monsters = Array[ExtResource("2_b74wg")]([ExtResource("2_slime"), ExtResource("3_goblin"), ExtResource("4_wolf"), ExtResource("5_skeleton"), ExtResource("6_dragon"), SubResource("Resource_b74wg")])
 loot_items = Array[ExtResource("8_ehes1")]([ExtResource("7_sword"), ExtResource("8_potion"), ExtResource("9_coins"), ExtResource("10_scroll"), ExtResource("11_ring")])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

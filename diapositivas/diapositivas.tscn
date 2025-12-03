@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvd7nakwwre3f"]
+[gd_scene load_steps=18 format=3 uid="uid://dvd7nakwwre3f"]
 
 [ext_resource type="Script" uid="uid://dtoovey3km3b3" path="res://addons/slides/diapositivas.gd" id="1_rsqhl"]
 [ext_resource type="Texture2D" uid="uid://plqq7bqjwbib" path="res://addons/slides/imagenes/image-background.jpg" id="2_x2bli"]
@@ -9,10 +9,12 @@
 [ext_resource type="LabelSettings" uid="uid://ciklliuwfowi" path="res://addons/slides/resources/fecha_label_settings.tres" id="6_6ewpg"]
 [ext_resource type="Script" uid="uid://cjl8wre8g346n" path="res://addons/slides/utils/animation_player.gd" id="7_w1i3l"]
 [ext_resource type="LabelSettings" uid="uid://dt82lbtlp1h3k" path="res://addons/slides/resources/titulo_filmina_agenda_label_settings.tres" id="8_4sra1"]
-[ext_resource type="Texture2D" uid="uid://u7k7aytaned0" path="res://diapositivas/imagenes/pipeline_compilations_shader_compilation_diagram.webp" id="10_4sra1"]
 
 [sub_resource type="Theme" id="Theme_l4vhf"]
 RichTextLabel/colors/default_color = Color(0.96474224, 0.96474224, 0.9647421, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dftkn"]
+font_size = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y722n"]
 bg_color = Color(0.211765, 0.239216, 0.290196, 1)
@@ -73,9 +75,6 @@ _data = {
 &"new_animation": SubResource("Animation_x2bli")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_dftkn"]
-font_size = 40
-
 [node name="Diapositivas" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
@@ -89,7 +88,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 3
+diapositiva_actual = 2
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
@@ -185,44 +184,7 @@ label_settings = ExtResource("6_6ewpg")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Preguntas" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="¿Preguntas?" type="Label" parent="Preguntas"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.5
-offset_top = -78.5
-offset_right = 300.5
-offset_bottom = 78.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(292.5, 84.5)
-theme_override_styles/normal = SubResource("StyleBoxFlat_y722n")
-text = "¿Preguntas?"
-label_settings = SubResource("LabelSettings_y722n")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Preguntas"]
-libraries = {
-&"": SubResource("AnimationLibrary_rxgjl")
-}
-autoplay = "new_animation"
-script = ExtResource("7_w1i3l")
-
-[node name="Shaders1" type="Control" parent="."]
+[node name="AvisosParroquiales" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -233,7 +195,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Fondo" type="TextureRect" parent="Shaders1"]
+[node name="Fondo" type="TextureRect" parent="AvisosParroquiales"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,7 +207,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 texture = ExtResource("2_x2bli")
 
-[node name="MarginContainer" type="MarginContainer" parent="Shaders1"]
+[node name="MarginContainer" type="MarginContainer" parent="AvisosParroquiales"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,27 +217,19 @@ grow_vertical = 2
 theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Shaders1/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AvisosParroquiales/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 70
 
-[node name="Titulo" type="Label" parent="Shaders1/MarginContainer/VBoxContainer"]
+[node name="Titulo" type="Label" parent="AvisosParroquiales/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "¿Qué es un Shader?"
+text = "Avisos parroquiales"
 label_settings = ExtResource("8_4sra1")
 
-[node name="Label" type="Label" parent="Shaders1/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="AvisosParroquiales/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "- Programa que se ejecuta en la GPU
-- Define cómo se renderiza cada píxel en pantalla
-- Controla efectos visuales: iluminación, sombras, colores, etc.
-- En godot se escriben en GLSL, pero se tienen que compilar para que los corra la GPU"
+text = "- La clase del 15/12 se mueve al 9/12. Los grupos que puedan exponen el juego ese día"
 label_settings = SubResource("LabelSettings_dftkn")
-
-[node name="PipelineCompilationsShaderCompilationDiagram" type="Sprite2D" parent="Shaders1"]
-position = Vector2(963.99994, 723.99994)
-scale = Vector2(2.2392857, 2.2392857)
-texture = ExtResource("10_4sra1")
 
 [node name="Shaders2" type="Control" parent="."]
 layout_mode = 1
@@ -323,3 +277,275 @@ layout_mode = 2
 text = "- Depende del hardware específico y del driver de la GPUsión del driver de GPU
 - ¡Esto en consolas sí funcionaría!"
 label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Shaders3" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Shaders3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shaders3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shaders3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Shaders3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Actividad"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Label" type="Label" parent="Shaders3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "- Clonen el proyecto
+- Busquen donde esta la carpeta de cache de shaders de su compu"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Randomness" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Randomness"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Randomness"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Randomness/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Randomness/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Aleatoriedad"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Label" type="Label" parent="Randomness/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Randomness2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Randomness2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Randomness2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Randomness2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Randomness2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Aleatoriedad"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Label" type="Label" parent="Randomness2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "¿Cómo hacemos que pelear o no, no afecte el monstruo que viene a continuación?"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Randomness3" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Randomness3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Randomness3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Randomness3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Randomness3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Aleatoriedad"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Label" type="Label" parent="Randomness3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "¿Qué tenemos que modificar si queremos agregar un nuevo tipo de monstruo?"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Randomness4" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Randomness4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Randomness4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Randomness4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Randomness4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Aleatoriedad"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Label" type="Label" parent="Randomness4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "¿Cómo podríamos ponerle a cada monstruo loot distinto?"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Preguntas" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="¿Preguntas?" type="Label" parent="Preguntas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.5
+offset_top = -78.5
+offset_right = 300.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(292.5, 84.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_y722n")
+text = "¿Preguntas?"
+label_settings = SubResource("LabelSettings_y722n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Preguntas"]
+libraries = {
+&"": SubResource("AnimationLibrary_rxgjl")
+}
+autoplay = "new_animation"
+script = ExtResource("7_w1i3l")

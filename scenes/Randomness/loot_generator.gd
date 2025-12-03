@@ -7,11 +7,17 @@ extends Control
 var current_monster: Monster = null
 var journal_entries: Array[String] = []
 
+var monster_rng = RandomNumberGenerator.new()
+var items_rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	if random_seed:
+		monster_rng.seed = random_seed.hash()
+		items_rng.seed = random_seed.hash()
 		seed(random_seed.hash())
 	else:
+		monster_rng.randomize()
+		items_rng.randomize()
 		randomize()
 
 func _on_find_monster_button_pressed() -> void:
@@ -24,19 +30,22 @@ func _on_find_monster_button_pressed() -> void:
 
 
 func get_random_monster() -> Monster:
-	var roll = randf()
-	var cumulative = 0.0
-	
-	for monster in monsters:
-		cumulative += monster.probability
-		if roll < cumulative:
-			return monster
-	
-	return monsters.front()
+	#var roll = monster_rng.randf()
+	var weighs = PackedFloat32Array(monsters.map(func(monster): return monster.probability))
+	var idx = monster_rng.rand_weighted(weighs)
+	return monsters[idx]
+	#var cumulative = 0.0
+	#
+	#for monster in monsters:
+		#cumulative += monster.probability
+		#if roll < cumulative:
+			#return monster
+	#
+	#return monsters.front()
 
 
 func _on_fight_button_pressed() -> void:
-	var item: Loot = loot_items.pick_random()
+	var item: Loot = loot_items[items_rng.randi() % loot_items.size()]
 	
 	%ResultLabel.text = "⚔️ Victory! ⚔️"
 	%ResultLabel.modulate = Color("#FFD700")

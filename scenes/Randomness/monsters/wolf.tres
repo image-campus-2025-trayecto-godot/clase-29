@@ -7,4 +7,4 @@ script = ExtResource("1")
 monster_name = "Wolf"
 monster_emoji = "🐺"
 monster_color = Color(0.545098, 0.270588, 0.0745098, 1)
-probability = 0.2
+probability = 5.0
